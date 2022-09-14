@@ -7,4 +7,7 @@ class CustomSection(models.Model):
     slug = models.CharField(max_length=100)
     products = models.ManyToManyField(Product, blank=True)
 
+    def onlyGetSixProducts(self):
+        return Product.objects.all()[:6]
+
     
