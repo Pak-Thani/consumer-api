@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+
+    # List App
+    'custom_sections',
 ]
 
 REST_FRAMEWORK = {
