@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.urlpatterns import format_suffix_patterns
 from custom_sections.views import CustomSectionView
-from rest_framework.routers import DefaultRouter
+from product.views import ProductView
 
-router = DefaultRouter()
-router.register('api/custom_sections', CustomSectionView, basename='custom_sections')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', include(router.urls)),
-    path('api/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/custom-sections/<slug>', CustomSectionView.as_view()),
+    path('api/custom-sections/', CustomSectionView.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
