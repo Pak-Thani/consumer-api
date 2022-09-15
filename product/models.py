@@ -7,6 +7,7 @@ class Product(models.Model):
     image = models.CharField(max_length=255)
     slug = models.CharField(max_length=8)
     qty = models.CharField(max_length=8)
+    pricePerQty = models.PositiveIntegerField()
     stockAvailable = models.PositiveIntegerField()
     isStockAvailable = models.BooleanField()
     
