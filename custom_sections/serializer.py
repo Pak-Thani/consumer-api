@@ -4,7 +4,6 @@ from .models import CustomSection
 
 class CustomSectionSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True, source='onlyGetSixProducts')
-    
     class Meta:
         model = CustomSection
         fields = ['id', 'title', 'slug', 'products']

@@ -3,46 +3,54 @@ from rest_framework.views import APIView
 from apps.custom_response import CustomResponse
 from .serializer import CustomSectionSerializer, CustomSectionDetailSerializer
 from .models import CustomSection
+from .paginations import CustomPagination
+from rest_framework import generics
+
+
+class DetailCustomSectionView(generics.RetrieveAPIView):
+    queryset = CustomSection.objects.all()
+    serializer_class = CustomSectionDetailSerializer
+    lookup_field = 'slug'
+
+    def get(self, request, slug):
+        try:
+            custom_section = CustomSection.objects.get(slug=slug)
+            serializer = self.serializer_class(custom_section)
+            return CustomResponse.success(serializer.data)
+        except CustomSection.DoesNotExist:
+            return CustomResponse.error('Custom section not found', 404)
+
+class ListCustomSectionView(generics.ListAPIView):
+    queryset = CustomSection.objects.all()
+    pagination_class = CustomPagination
+    serializer_class = CustomSectionSerializer
+
+    def get(self, request):
+        try:
+            custom_section = CustomSection.objects.all()
+            serializer = self.serializer_class(custom_section, many=True)
+            # pagination
+            page = self.paginate_queryset(custom_section)
+            if page is not None:
+                serializer = self.serializer_class(page, many=True)
+                data = self.get_paginated_response(serializer.data)
+                return CustomResponse.success(data)
+        except CustomSection.DoesNotExist:
+            return CustomResponse.error('Custom section not found', 404)
 
 # Create your views here.
-class CustomSectionView(APIView):
-    def get(self, request, slug=None):
-        if slug is None:
-            custom_sections = CustomSection.objects.all()
-            serializer = CustomSectionSerializer(custom_sections, many=True)
-            return CustomResponse.success(serializer.data)
-        else:
-            try:
-                custom_section = CustomSection.objects.get(slug=slug)
-                serializer = CustomSectionDetailSerializer(custom_section)
-                return CustomResponse.success(serializer.data)
-            except CustomSection.DoesNotExist:
-                return CustomResponse.notFound()
-    
-    # def post(self, request):
-    #     serializer = CustomSectionDetailSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return CustomResponse.success(serializer.data)
-    #     else:
-    #         return CustomResponse.badRequest(serializer.errors)
+# class CustomSectionView(APIView):
+#     pagination_class = CustomPagination
 
-    # def put(self, request, slug):
-    #     try:
-    #         custom_section = CustomSection.objects.get(slug=slug)
-    #         serializer = CustomSectionDetailSerializer(custom_section, data=request.data)
-    #         if serializer.is_valid():
-    #             serializer.save()
-    #             return CustomResponse.success(serializer.data)
-    #         else:
-    #             return CustomResponse.badRequest(serializer.errors)
-    #     except CustomSection.DoesNotExist:
-    #         return CustomResponse.notFound()
-
-    # def delete(self, request, slug):
-    #     try:
-    #         custom_section = CustomSection.objects.get(slug=slug)
-    #         custom_section.delete()
-    #         return CustomResponse.success()
-    #     except CustomSection.DoesNotExist:
-    #         return CustomResponse.notFound()
+#     def get(self, request, slug=None):
+#         if slug is None:
+#             custom_sections = CustomSection.objects.all()
+#             serializer = CustomSectionSerializer(custom_sections, many=True)
+#             return CustomResponse.success(serializer.data)
+#         else:
+#             try:
+#                 custom_section = CustomSection.objects.get(slug=slug)
+#                 serializer = CustomSectionDetailSerializer(custom_section)
+#                 return CustomResponse.success(serializer.data)
+#             except CustomSection.DoesNotExist:
+#                 return CustomResponse.notFound()

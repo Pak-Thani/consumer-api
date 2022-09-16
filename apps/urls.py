@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from custom_sections.views import CustomSectionView
+from custom_sections.views import ListCustomSectionView, DetailCustomSectionView
 from product.views import ProductView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/custom-sections/<slug>', CustomSectionView.as_view()),
-    path('api/custom-sections/', CustomSectionView.as_view()),
+    path('api/custom-sections/<slug>', DetailCustomSectionView.as_view()),
+    path('api/custom-sections', ListCustomSectionView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
