@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from product.serializer import ProductSerializer
+from product.serializers import ProductSerializer
 from .models import CustomSection
 
 class CustomSectionSerializer(serializers.ModelSerializer):
