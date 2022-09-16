@@ -8,7 +8,6 @@ from rest_framework import generics
 
 
 class DetailCustomSectionView(generics.RetrieveAPIView):
-    queryset = CustomSection.objects.all()
     serializer_class = CustomSectionDetailSerializer
     lookup_field = 'slug'
 
@@ -21,15 +20,15 @@ class DetailCustomSectionView(generics.RetrieveAPIView):
             return CustomResponse.error('Custom section not found', 404)
 
 class ListCustomSectionView(generics.ListAPIView):
-    queryset = CustomSection.objects.all()
+    queryset = CustomSection.objects.all().filter(is_active=True)
     pagination_class = CustomPagination
     serializer_class = CustomSectionSerializer
 
     def get(self, request):
         try:
-            custom_section = CustomSection.objects.all()
+            custom_section = self.get_queryset()
             serializer = self.serializer_class(custom_section, many=True)
-            # pagination
+
             page = self.paginate_queryset(custom_section)
             if page is not None:
                 serializer = self.serializer_class(page, many=True)

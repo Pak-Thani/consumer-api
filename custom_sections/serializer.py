@@ -6,7 +6,7 @@ class CustomSectionSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True, source='onlyGetSixProducts')
     class Meta:
         model = CustomSection
-        fields = ['id', 'title', 'slug', 'products']
+        fields = ['id', 'title', 'slug', 'products', 'is_active']
         extra_kwargs = {'products': {'required': False, 'read_only': True}}
         lookup_field = 'slug'
         extra_kwargs = {
@@ -18,7 +18,7 @@ class CustomSectionDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomSection
-        fields = ['id', 'title', 'slug', 'products']
+        fields = ['id', 'title', 'slug', 'products', 'is_active']
         extra_kwargs = {'products': {'required': False, 'read_only': True}}
         lookup_field = 'slug'
         extra_kwargs = {
