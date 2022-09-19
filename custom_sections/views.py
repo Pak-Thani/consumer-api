@@ -36,20 +36,3 @@ class ListCustomSectionView(generics.ListAPIView):
                 return CustomResponse.success(data)
         except CustomSection.DoesNotExist:
             return CustomResponse.error('Custom section not found', 404)
-
-# Create your views here.
-# class CustomSectionView(APIView):
-#     pagination_class = CustomPagination
-
-#     def get(self, request, slug=None):
-#         if slug is None:
-#             custom_sections = CustomSection.objects.all()
-#             serializer = CustomSectionSerializer(custom_sections, many=True)
-#             return CustomResponse.success(serializer.data)
-#         else:
-#             try:
-#                 custom_section = CustomSection.objects.get(slug=slug)
-#                 serializer = CustomSectionDetailSerializer(custom_section)
-#                 return CustomResponse.success(serializer.data)
-#             except CustomSection.DoesNotExist:
-#                 return CustomResponse.notFound()
