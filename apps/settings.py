@@ -40,7 +40,6 @@ ALLOWED_HOSTS = ['pakthani-644xh.ondigitalocean.app']
 # Application definition
 
 INSTALLED_APPS = [
-    'product.apps.ProductConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
