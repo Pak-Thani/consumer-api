@@ -1,3 +1,5 @@
+import environ, os
+
 AWS_ACCESS_KEY_ID=env('AWS_KEY')
 AWS_SECRET_ACCESS_KEY=env('AWS_SECRET_KEY')
 AWS_STORAGE_BUCKET_NAME='pakthani'
