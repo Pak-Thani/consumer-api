@@ -34,7 +34,7 @@ SECRET_KEY = env('APP_DEBUG')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
 
-ALLOWED_HOSTS = ['https://pakthani-644xh.ondigitalocean.app/']
+ALLOWED_HOSTS = ['pakthani-644xh.ondigitalocean.app']
 
 
 # Application definition
