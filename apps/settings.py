@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import environ, os
 
+<<<<<<< HEAD
 # Read the .env file
 
+=======
+>>>>>>> 17f8a336d23d38e9162c325e557de9bbf57ade23
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
@@ -31,12 +34,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = env('APP_DEBUG')
+=======
+SECRET_KEY = env('SECRET_KEY')
+>>>>>>> 17f8a336d23d38e9162c325e557de9bbf57ade23
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['https://pakthani-644xh.ondigitalocean.app/']
+=======
+ALLOWED_HOSTS = []
+>>>>>>> 17f8a336d23d38e9162c325e557de9bbf57ade23
 
 
 # Application definition
@@ -105,11 +116,19 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'pakthani',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+=======
+        'NAME': env('DB_DATABASE'),
+        'USER': env('DB_USERNAME'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+>>>>>>> 17f8a336d23d38e9162c325e557de9bbf57ade23
         'OPTIONS': {
             # Tell MySQL to connect with 'utf8mb4' chraracter set
             # 'charset': 'utf8mb4',

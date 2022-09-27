@@ -11,5 +11,9 @@ pytz==2022.1
 sqlparse==0.4.2
 typing-extensions==4.2.0
 django-storages
+<<<<<<< HEAD
 boto3
 typing-extensions==4.2.0
+=======
+boto3
+>>>>>>> 17f8a336d23d38e9162c325e557de9bbf57ade23
