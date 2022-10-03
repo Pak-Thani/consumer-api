@@ -22,6 +22,8 @@ class SearchProductView(generics.ListAPIView):
     def get(self, request, keyword):
         try:
             products = Product.objects.filter(name__icontains = keyword)
+            if products.count() <= 0:
+                raise Product.DoesNotExist
             serializer = self.serializer_class(products, many=True)
 
             page = self.paginate_queryset(products)
@@ -29,6 +31,6 @@ class SearchProductView(generics.ListAPIView):
                 serializer = self.serializer_class(page, many=True)
                 data = self.get_paginated_response(serializer.data)
                 return CustomResponse.success(data)
-                
+
         except Product.DoesNotExist:
             return CustomResponse.notFound(error='Product Not Found')
