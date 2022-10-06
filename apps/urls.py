@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from custom_sections.views import ListCustomSectionView, DetailCustomSectionView
 from product.views import ProductView
+from category.views import CategoryView, DetailCategoryView
 
 
 from product.views import ProductView
@@ -25,8 +26,10 @@ from product.views import ProductView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/custom-sections/<slug>', DetailCustomSectionView.as_view()),
-    path('api/custom-sections', ListCustomSectionView.as_view()),
-    path('api/product/<slug>', ProductView.as_view())
+    path('api/custom-sections/', ListCustomSectionView.as_view()),
+    path('api/product/<slug>', ProductView.as_view()),
+    path('api/category/', CategoryView.as_view()),
+    path('api/category/<slug>', DetailCategoryView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
