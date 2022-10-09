@@ -3,8 +3,9 @@ from import_export.admin import ImportMixin
 from .resources import ProductResource
 from .models import Product
 
-class ProductAdmin(ImportMixin, admin.ModelAdmin):
-    list_display = ('name', 'slug', 'qty', 'pricePerQty', 'stockAvailable', 'isStockAvailable')
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'qty', 'pricePerQty', 'stockAvailable', 'isStockAvailable', 'image')
     readonly_fields = ('isStockAvailable', )
     resource_class = ProductResource
 

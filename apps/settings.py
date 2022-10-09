@@ -34,7 +34,13 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env('DJANGO_ALLOWED_HOST')]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000',
+    'http://localhost:3000',
+)
 
 
 # Application definition
@@ -53,6 +59,8 @@ INSTALLED_APPS = [
 
     # List App
     'custom_sections',
+    'storages',
+    'category',
 ]
 
 REST_FRAMEWORK = {
@@ -74,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'apps.urls'
@@ -151,6 +160,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn"
+
+from .cdn.conf import *
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
