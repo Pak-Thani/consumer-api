@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # List App
     'custom_sections',
     'storages',
+    'banner',
 ]
 
 REST_FRAMEWORK = {

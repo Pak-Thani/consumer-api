@@ -18,15 +18,17 @@ from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from custom_sections.views import ListCustomSectionView, DetailCustomSectionView
 from product.views import ProductView
+from banner.views import BannerView
+from banner.views import JsonView
 
-
-from product.views import ProductView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/custom-sections/<slug>', DetailCustomSectionView.as_view()),
     path('api/custom-sections', ListCustomSectionView.as_view()),
-    path('api/product/<slug>', ProductView.as_view())
+    path('api/product/<slug>', ProductView.as_view()),
+    path('api/banner/<slug>', BannerView.as_view()),
+    path('api/json', JsonView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
