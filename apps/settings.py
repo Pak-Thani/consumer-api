@@ -39,6 +39,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOST').split(' ')
 
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000',
+    'http://localhost:3000',
+)
+
 
 # Application definition
 
@@ -52,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'import_export',
 
     # List App
     'custom_sections',
