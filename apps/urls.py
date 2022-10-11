@@ -18,8 +18,8 @@ from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from custom_sections.views import ListCustomSectionView, DetailCustomSectionView
 from product.views import ProductView
-from banner.views import BannerView
-from banner.views import JsonView
+from banner.views import BannerView, JsonView
+from category.views import CategoryView
 
 
 urlpatterns = [

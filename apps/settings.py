@@ -36,6 +36,12 @@ DEBUG = env('APP_DEBUG')
 
 ALLOWED_HOSTS = [env('DJANGO_ALLOWED_HOST')]
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000',
+    'http://localhost:3000',
+)
+
 
 # Application definition
 
@@ -54,6 +60,7 @@ INSTALLED_APPS = [
     'custom_sections',
     'storages',
     'banner',
+    'category',
 ]
 
 REST_FRAMEWORK = {
@@ -75,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'apps.urls'
@@ -150,8 +158,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
 
 STATIC_URL = 'static/'
 
