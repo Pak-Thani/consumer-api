@@ -13,20 +13,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import environ, os
 
+# Read the .env file
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
 )
-
-# Read the .env file
 environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -34,7 +28,16 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
 
-ALLOWED_HOSTS = [env('DJANGO_ALLOWED_HOST')]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000',
+    'http://localhost:3000',
+)
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOST').split(' ')
+
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
@@ -60,6 +63,7 @@ INSTALLED_APPS = [
     # List App
     'custom_sections',
     'storages',
+    'banner',
     'category',
 ]
 
