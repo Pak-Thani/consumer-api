@@ -14,3 +14,4 @@ django-import-export==2.9.0
 gunicorn
 django-storages
 boto3
+Pillow==9.2.0
