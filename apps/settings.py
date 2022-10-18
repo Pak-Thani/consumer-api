@@ -46,9 +46,9 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'https://timely-figolla-126cd7.netlify.app'
 )
-CORS_ALLOWED_ORIGINS = (
+CORS_ALLOWED_ORIGINS = [
     'https://timely-figolla-126cd7.netlify.app'
-)
+]
 
 
 # Application definition
