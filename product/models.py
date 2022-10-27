@@ -7,7 +7,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     #image = models.FileField(upload_to='product/')
     image = OptimizedImageField(
-        upload_to='banner/',
+        upload_to='product/',
         optimized_image_output_size=(400, 300),
         optimized_image_resize_method="thumbnail"
     )

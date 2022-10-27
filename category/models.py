@@ -6,7 +6,7 @@ class Category(models.Model):
   name = models.CharField(max_length=32)
   #icon = models.FileField(upload_to='icon-category/')
   image = OptimizedImageField( 
-    upload_to='banner/',
+    upload_to='icon-category/',
     optimized_image_output_size=(400, 300),
     optimized_image_resize_method="thumbnail"
   )
