@@ -67,9 +67,11 @@ INSTALLED_APPS = [
 
     # List App
     'custom_sections',
-    'storages',
     'banner',
     'category',
+
+    'storages',
+    'image_optimizer',
 ]
 
 REST_FRAMEWORK = {
@@ -152,7 +154,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+OPTIMIZED_IMAGE_METHOD = 'pillow'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
