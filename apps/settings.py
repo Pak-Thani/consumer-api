@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'storages',
     'banner',
     'category',
+    'transaction',
 ]
 
 REST_FRAMEWORK = {
