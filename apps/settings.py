@@ -29,24 +29,13 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('APP_DEBUG')
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    '*'
-]
+CORS_ORIGIN_WHITELIST = (
+    "https://timely-figolla-126cd7.netlify.app",
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOST').split(' ')
-
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'https://localhost:3000',
-    'http://localhost:3000',
-    'https://timely-figolla-126cd7.netlify.app'
-]
-CORS_ALLOWED_ORIGINS = [
-    'https://timely-figolla-126cd7.netlify.app'
-]
 
 
 # Application definition
