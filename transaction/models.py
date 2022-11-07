@@ -1,5 +1,6 @@
 from django.db import models
 from product.models import Product
+from django.contrib.postgres.fields import ArrayField
 
 class Transaction(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -16,9 +17,9 @@ class Transaction(models.Model):
 
     #cart
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-    quantity = models.IntegerField(default=1)
+    quantity = ArrayField(models.IntegerField(default=[]), null=True, blank=True)
     total = models.IntegerField()
-    
+
     pembayaran = models.CharField(max_length=32)
     status = models.CharField(max_length=32, default="Belum Dibayar")
 
