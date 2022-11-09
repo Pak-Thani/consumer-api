@@ -6,7 +6,7 @@ from .models import Product
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'qty', 'pricePerQty', 'stockAvailable', 'isStockAvailable', 'image')
-    readonly_fields = ('isStockAvailable', )
+    readonly_fields = ('isStockAvailable', 'slug')
     resource_class = ProductResource
 
     def save_model(self, request, obj, form, change):
