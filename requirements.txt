@@ -16,3 +16,4 @@ django-storages
 boto3
 Pillow==9.2.0
 django-image-optimizer
+django-cleanup

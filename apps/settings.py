@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     'storages',
     'image_optimizer',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 REST_FRAMEWORK = {
