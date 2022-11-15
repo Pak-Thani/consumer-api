@@ -17,7 +17,7 @@ class Transaction(models.Model):
 
     #cart
     products = models.ManyToManyField(Product, through='TransactionProduct')
-    total = models.IntegerField()
+    total = models.PositiveIntegerField()
 
     pembayaran = models.CharField(max_length=32)
     status = models.CharField(max_length=32, default="Belum Dibayar")
@@ -25,6 +25,7 @@ class Transaction(models.Model):
     def __str__(self):
         return self.namaPembeli
 
-class TransactionProduct:
+class TransactionProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-    quantity = models.PositiveIntegerField()
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=1)
