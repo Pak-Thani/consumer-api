@@ -1,6 +1,5 @@
 from django.db import models
 from product.models import Product
-from django.contrib.postgres.fields import ArrayField
 
 class Transaction(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -26,6 +25,7 @@ class Transaction(models.Model):
         return self.namaPembeli
 
 class TransactionProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, blank=True)
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_slug = models.CharField(max_length=32)
     quantity = models.PositiveIntegerField(default=1)
