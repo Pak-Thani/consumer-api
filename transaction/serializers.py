@@ -20,7 +20,6 @@ class TransactionSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         products_data = validated_data.pop('transactionproduct_set')
-        print(validated_data)
         transaction = Transaction.objects.create(**validated_data)
         for product_data in products_data:
             print(product_data)
