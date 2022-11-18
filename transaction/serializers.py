@@ -22,11 +22,14 @@ class TransactionSerializer(serializers.ModelSerializer):
         products_data = validated_data.pop('transactionproduct_set')
         transaction = Transaction.objects.create(**validated_data)
         for product_data in products_data:
-            print(product_data)
+            product = Product.objects.get(slug=product_data['product_slug'])
             TransactionProduct.objects.create(
                 transaction=transaction, 
-                product=Product.objects.get(slug=product_data['product_slug']),
+                product=product,
                 product_slug=product_data['product_slug'],
                 quantity=product_data['quantity']
             )
+            product.stockAvailable -= product_data['quantity']
+            product.save()
+            
         return transaction
