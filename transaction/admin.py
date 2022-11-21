@@ -11,17 +11,14 @@ class ExportCsvMixin:
         field_names = [field.name for field in meta.fields
             if field.name not in ['nomorWhatsapp', 'detailAlamat']    
         ]
-
-        #create a queryset to get product_slug and quantity in TransactionProdQ
         queryset = queryset.prefetch_related('transactionproduct_set')
 
 
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
         writer = csv.writer(response)
-        #write the header andd add rpoduct_slug and quantity
-        writer.writerow(field_names + ['product_slug', 'quantity'])
 
+        writer.writerow(field_names + ['product_slug', 'quantity'])
         for rule in queryset:
             for prod in rule.transactionproduct_set.all():
                 row = [getattr(rule, field) for field in field_names]
@@ -34,6 +31,9 @@ class ExportCsvMixin:
     export_as_csv.short_description = "Export Selected"
 class TransactionAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('created', 'namaPembeli', 'status', 'pembayaran')
-    actions = ["export_as_csv"]       
+    actions = ["export_as_csv"]  
+
+    def has_add_permission(self, request, obj=None):
+        return False     
     
 admin.site.register(Transaction, TransactionAdmin)
