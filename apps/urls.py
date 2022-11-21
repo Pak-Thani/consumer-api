@@ -21,7 +21,6 @@ from custom_sections.views import ListCustomSectionView, DetailCustomSectionView
 from product.views import ProductView, SearchProductView
 from banner.views import BannerView, JsonView
 from category.views import CategoryView, DetailCategoryView
-from transaction.views import TransactionView
 
 
 urlpatterns = [
@@ -34,7 +33,6 @@ urlpatterns = [
     path('api/search/<keyword>', SearchProductView.as_view()),
     path('api/category/', CategoryView.as_view()),
     path('api/category/<slug>', DetailCategoryView.as_view()),
-    path('api/transaction/', TransactionView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

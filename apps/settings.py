@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     'custom_sections',
     'banner',
     'category',
-    'transaction',
+
     'storages',
     'image_optimizer',
 ]
