@@ -5,7 +5,7 @@ from .models import Category
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'icon', 'slug']
+        fields = ['id', 'name', 'image', 'slug']
 
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id', 'name', 'icon', 'slug', 'products']
+        fields = ['id', 'name', 'image', 'slug', 'products']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}

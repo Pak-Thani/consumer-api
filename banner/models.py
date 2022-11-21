@@ -1,6 +1,5 @@
 from email.policy import default
 from django.db import models
-
 from image_optimizer.fields import OptimizedImageField
 
 class Banner(models.Model):
