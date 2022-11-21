@@ -1,17 +1,17 @@
 from django.db import models
 from category.models import Category
 from image_optimizer.fields import OptimizedImageField
+from django.utils.text import slugify
 
 class Product(models.Model):
     name =  models.CharField(max_length=32)
     description = models.CharField(max_length=255)
-    #image = models.FileField(upload_to='product/')
     image = OptimizedImageField(
         upload_to='product/',
         optimized_image_output_size=(400, 300),
         optimized_image_resize_method="thumbnail"
     )
-    slug = models.CharField(max_length=32)
+    slug = models.SlugField(max_length=100, unique=True, editable=False)
     qty = models.CharField(max_length=32)
     pricePerQty = models.PositiveIntegerField()
     stockAvailable = models.PositiveIntegerField()
@@ -20,4 +20,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
 
