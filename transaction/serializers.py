@@ -1,8 +1,5 @@
 from rest_framework import serializers
 from .models import Transaction, TransactionProduct, Product
-from product.serializers import ProductSerializer
-
-
 
 class TransactionProductSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='product.id')
