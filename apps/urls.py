@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/category/', CategoryView.as_view()),
     path('api/category/<slug>', DetailCategoryView.as_view()),
     path('api/transaction/', TransactionView.as_view()),
+    path('api/transaction/<id>', TransactionView.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
