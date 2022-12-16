@@ -13,6 +13,9 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = '__all__'
+        extra_kwargs = {
+            'url' : {'lookup_field': 'id'}
+        }
         depth = 2
 
     def create(self, validated_data):
