@@ -21,26 +21,70 @@ env = environ.Env(
 )
 environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+    'https://localhost:3000',
+    'http://localhost:3000',
+    'https://timely-figolla-126cd7.netlify.app'
+]
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOST').split(' ')
+
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+    'https://localhost:3000',
+    'http://localhost:3000',
+    'https://timely-figolla-126cd7.netlify.app'
+]
+CORS_ALLOWED_ORIGINS = [
+    'https://timely-figolla-126cd7.netlify.app'
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'product.apps.ProductConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'import_export',
+    'django_admin_filters',
+
+    # List App
+    'custom_sections',
+    'banner',
+    'category',
+    'transaction',
+    'storages',
+    'image_optimizer',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated'
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'custom_sections.paginations.CustomPagination',
+    'PAGE_SIZE': 2,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'apps.urls'
@@ -78,8 +123,16 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DB_DATABASE'),
+        'USER': env('DB_USERNAME'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'OPTIONS': {
+            # Tell MySQL to connect with 'utf8mb4' chraracter set
+            # 'charset': 'utf8mb4',
+        },
     }
 }
 
@@ -102,7 +155,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+OPTIMIZED_IMAGE_METHOD = 'pillow'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -119,6 +172,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn"
+
+from .cdn.conf import *
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
