@@ -1,4 +1,5 @@
 from django.db import models
+from image_optimizer.fields import OptimizedImageField
 from product.models import Product
 
 class Transaction(models.Model):
@@ -19,6 +20,10 @@ class Transaction(models.Model):
     total = models.PositiveIntegerField()
 
     shiftPengantaran = models.CharField(max_length=32)
+    buktiPembayaran = OptimizedImageField( 
+        upload_to='transaction-evidence/',
+        blank=True,
+    )
     pembayaran = models.CharField(max_length=32)
     status = models.CharField(max_length=32, default="Belum Dibayar")
 
