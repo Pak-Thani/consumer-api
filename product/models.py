@@ -14,7 +14,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=100, unique=True, editable=False)
     qty = models.CharField(max_length=32)
     pricePerQty = models.PositiveIntegerField()
-    stockAvailable = models.PositiveIntegerField()
+    stockAvailable = models.PositiveIntegerField(default=0)
     isStockAvailable = models.BooleanField()
     category = models.ForeignKey(Category, related_name='products', blank=True, on_delete=models.CASCADE)
 
