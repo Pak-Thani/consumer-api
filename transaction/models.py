@@ -18,6 +18,7 @@ class Transaction(models.Model):
     products = models.ManyToManyField(Product, through='TransactionProduct')
     total = models.PositiveIntegerField()
 
+    shiftPengantaran = models.CharField(max_length=32)
     pembayaran = models.CharField(max_length=32)
     status = models.CharField(max_length=32, default="Belum Dibayar")
 
