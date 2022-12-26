@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'import_export',
+    'django_admin_filters',
 
     # List App
     'custom_sections',

@@ -1,9 +1,9 @@
 from django.contrib import admin
+from .models import Transaction
+
 import csv
 from django.http import HttpResponse
-# from csvexport.actions import csvexport
-
-from .models import Transaction
+from django_admin_filters import DateRangePicker
 
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
@@ -29,7 +29,9 @@ class ExportCsvMixin:
         return response
 
     export_as_csv.short_description = "Export Selected"
+    
 class TransactionAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_filter = (('created', DateRangePicker),)
     list_display = ('created', 'namaPembeli', 'status', 'pembayaran')
     actions = ["export_as_csv"]  
 
