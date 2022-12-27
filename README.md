@@ -30,6 +30,12 @@ Then install the project dependencies with
 pip install -r requirements.txt
 ```
 
+After that connect the static files of the library for django-admin-list-filters
+
+```
+python manage.py collectstatic
+```
+
 Now you can run the project with this command
 
 ```
