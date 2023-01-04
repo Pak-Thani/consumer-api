@@ -4,7 +4,7 @@ from image_optimizer.fields import OptimizedImageField
 from django.utils.text import slugify
 
 class Product(models.Model):
-    name =  models.CharField(max_length=32)
+    name =  models.CharField(max_length=64)
     description = models.CharField(max_length=255)
     image = OptimizedImageField(
         upload_to='product/',
