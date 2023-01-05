@@ -43,10 +43,8 @@ CORS_ALLOWED_ORIGINS = [
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
-    'http://18.143.174.41:8000/',
-    'http://18.143.174.41/',
-    '18.143.174.41:8000',
-    '18.143.174.41'
+    'http://pakthani-644xh.ondigitalocean.app/',
+    'pakthani-644xh.ondigitalocean.app',
 ]
 
 # Application definition
