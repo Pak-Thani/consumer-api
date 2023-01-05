@@ -16,3 +16,4 @@ Pillow==9.2.0
 django-image-optimizer
 django-admin-list-filters
 openpyxl-image-loader
+gunicorn
