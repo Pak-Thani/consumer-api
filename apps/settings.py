@@ -34,22 +34,20 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'https://timely-figolla-126cd7.netlify.app'
 ]
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOST').split(' ')
-
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'https://localhost:3000',
-    'http://localhost:3000',
-    'https://timely-figolla-126cd7.netlify.app'
-]
 CORS_ALLOWED_ORIGINS = [
     'https://timely-figolla-126cd7.netlify.app'
 ]
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+ALLOWED_HOSTS = [
+    'http://18.143.174.41:8000/',
+    'http://18.143.174.41/',
+    '18.143.174.41:8000',
+    '18.143.174.41'
+]
 
 # Application definition
 
