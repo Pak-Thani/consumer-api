@@ -28,16 +28,16 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('APP_DEBUG')
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'https://localhost:3000',
-    'http://localhost:3000',
-    'https://timely-figolla-126cd7.netlify.app'
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     'https://localhost:3000',
+#     'http://localhost:3000',
+#     'https://timely-figolla-126cd7.netlify.app'
+# ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://timely-figolla-126cd7.netlify.app'
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://timely-figolla-126cd7.netlify.app'
+# ]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
