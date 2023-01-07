@@ -3,11 +3,19 @@ from category.models import Category
 from image_optimizer.fields import OptimizedImageField
 from django.utils.text import slugify
 
+import uuid
+import pathlib
+
+def imageUploadHandler(instance, filename):
+    fpath = pathlib.Path(filename)
+    new_fname = str(uuid.uuid1())
+    return f"product/{new_fname}{fpath.suffix}"
+
 class Product(models.Model):
     name =  models.CharField(max_length=64)
     description = models.CharField(max_length=255)
     image = OptimizedImageField(
-        upload_to='product/',
+        upload_to=imageUploadHandler,
         optimized_image_output_size=(400, 300),
         optimized_image_resize_method="thumbnail"
     )
