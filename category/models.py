@@ -7,7 +7,6 @@ class Category(models.Model):
   name = models.CharField(max_length=32)
   image = OptimizedImageField( 
     upload_to='icon-category/',
-    optimized_image_output_size=(400, 300),
     optimized_image_resize_method="thumbnail"
   )
   slug = models.SlugField(max_length=100, unique=True, editable=False)

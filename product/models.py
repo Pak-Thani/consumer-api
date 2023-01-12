@@ -8,7 +8,6 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     image = OptimizedImageField(
         upload_to='product/',
-        optimized_image_output_size=(400, 300),
         optimized_image_resize_method="thumbnail"
     )
     slug = models.SlugField(max_length=100, unique=True, editable=False)
