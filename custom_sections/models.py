@@ -8,8 +8,8 @@ class CustomSection(models.Model):
     is_active = models.BooleanField(default=False)
     products = models.ManyToManyField(Product, blank=True)
 
-    def onlyGetSixProducts(self):
-        return Product.objects.all()[:6]
+    def onlyGetSixProductsBySlug(self):
+        return self.products.all()[:6]
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
