@@ -45,6 +45,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = [
     'http://pakthani-644xh.ondigitalocean.app/',
     'pakthani-644xh.ondigitalocean.app',
+    '127.0.0.1'
 ]
 
 # Application definition

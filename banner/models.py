@@ -7,5 +7,6 @@ class Banner(models.Model):
     name = models.CharField(max_length=32)
     image = OptimizedImageField(
         upload_to='banner/',
-        optimized_image_resize_method="thumbnail"
+        optimized_image_resize_method="thumbnail",
+        optimized_image_output_size=(1296, 864),
     )
