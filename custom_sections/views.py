@@ -21,7 +21,7 @@ class DetailCustomSectionView(generics.RetrieveAPIView):
 
 class ListCustomSectionView(generics.ListAPIView):
     queryset = CustomSection.objects.all().filter(is_active=True)
-    pagination_class = CustomPagination
+#     pagination_class = CustomPagination
     serializer_class = CustomSectionSerializer
 
     def get(self, request):
@@ -29,10 +29,11 @@ class ListCustomSectionView(generics.ListAPIView):
             custom_section = self.get_queryset()
             serializer = self.serializer_class(custom_section, many=True)
 
-            page = self.paginate_queryset(custom_section)
-            if page is not None:
-                serializer = self.serializer_class(page, many=True)
-                data = self.get_paginated_response(serializer.data)
-                return CustomResponse.success(data)
+#             page = self.paginate_queryset(custom_section)
+#             if page is not None:
+#                 serializer = self.serializer_class(page, many=True)
+#                 data = self.get_paginated_response(serializer.data)
+#                 return CustomResponse.success(data)
+            return CustomResponse.success(serializer.data)
         except CustomSection.DoesNotExist:
             return CustomResponse.error('Custom section not found', 404)
