@@ -27,6 +27,7 @@ from transaction.views import TransactionView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/custom-sections/<slug>', DetailCustomSectionView.as_view()),
+    path('api/banner/', JsonView.as_view()),
     path('api/banner/<slug>', BannerView.as_view()),
     path('api/json', JsonView.as_view()),
     path('api/custom-sections/', ListCustomSectionView.as_view()),
